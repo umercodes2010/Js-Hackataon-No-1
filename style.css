@@ -1,0 +1,948 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =========================
+   1. THEME
+========================= */
+
+:root {
+    --bg: #080b14;
+    --surface: #101625;
+    --surface-2: #151d30;
+    --surface-3: #1b2540;
+    --border: #27324a;
+
+    --primary: #8b7cff;
+    --primary-2: #6250ed;
+    --primary-glow: rgba(139, 124, 255, .2);
+
+    --text: #f2f4ff;
+    --muted: #929db6;
+
+    --green: #45d6a0;
+    --red: #ff788d;
+    --yellow: #f5c96b;
+
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 80% 0%, #171637 0%, transparent 35%),
+        var(--bg);
+    line-height: 1.6;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button,
+a,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: #7564f5;
+    color: white;
+}
+
+/* =========================
+   2. TYPOGRAPHY
+========================= */
+
+h1 {
+    color: #fff;
+    font-size: clamp(27px, 4vw, 36px);
+    line-height: 1.25;
+    letter-spacing: -1.2px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #f1f2ff;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.eyebrow {
+    color: #a79aff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   3. LOGIN PAGE
+========================= */
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 35px 18px;
+
+    background:
+        radial-gradient(
+            ellipse at 12% 18%,
+            rgba(111, 75, 255, .22),
+            transparent 37%
+        ),
+        radial-gradient(
+            ellipse at 90% 85%,
+            rgba(0, 174, 255, .13),
+            transparent 36%
+        ),
+        #080b14;
+}
+
+.login-page::before,
+.login-page::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.login-page::before {
+    background: rgba(111, 75, 255, .2);
+    top: -100px;
+    left: -90px;
+}
+
+.login-page::after {
+    background: rgba(0, 174, 255, .13);
+    bottom: -120px;
+    right: -80px;
+}
+
+.login-card {
+    width: min(440px, 100%);
+    padding: 38px;
+    position: relative;
+
+    background: rgba(17, 23, 39, .91);
+    border: 1px solid rgba(139, 124, 255, .23);
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, .45),
+        0 0 45px rgba(111, 75, 255, .07);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation: loginEnter .65s ease both;
+}
+
+@keyframes loginEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 27px;
+
+    color: white;
+    font-size: 29px;
+    font-weight: 800;
+
+    background: linear-gradient(135deg, #a598ff, #6250ed);
+    border-radius: 18px;
+
+    box-shadow: 0 8px 30px rgba(98, 80, 237, .35);
+}
+
+.login-card .eyebrow {
+    color: #a99cff;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.login-card h1 {
+    font-size: clamp(25px, 5vw, 30px);
+    letter-spacing: -1px;
+    margin: 12px 0;
+}
+
+.login-card > .muted {
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.login-card form {
+    margin-top: 23px;
+}
+
+/* =========================
+   4. INPUTS
+========================= */
+
+label {
+    display: block;
+    margin: 17px 0 8px;
+    color: #d9def0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+
+    color: var(--text);
+    background: #0b1020;
+    border: 1px solid #2d3851;
+    border-radius: 10px;
+
+    outline: none;
+    transition: border-color .22s, box-shadow .22s,
+    background .22s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #65718c;
+}
+
+input:hover,
+textarea:hover {
+    border-color: #4a5471;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    background: #10172a;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(139, 124, 255, .12);
+}
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* =========================
+   5. BUTTONS
+========================= */
+
+.primary,
+.secondary,
+.outline,
+.danger,
+.approve,
+.reject {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    padding: 11px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+
+    transition: background .22s, transform .22s,
+                box-shadow .22s, border-color .22s;
+}
+
+.primary {
+    color: white;
+    background: linear-gradient(120deg, #8876ff, #5e4be5);
+    box-shadow: 0 6px 18px rgba(98, 80, 237, .18);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(120deg, #a093ff, #7564f5);
+    box-shadow: 0 9px 24px rgba(98, 80, 237, .32);
+}
+
+.primary:active,
+.secondary:active,
+.outline:active {
+    transform: scale(.98);
+}
+
+.secondary {
+    color: #c7bdff;
+    background: #252142;
+    border-color: #39315e;
+}
+
+.secondary:hover {
+    background: #332b55;
+    border-color: #6554a5;
+}
+
+.outline {
+    color: #e2e7f7;
+    background: #171e30;
+    border-color: #303b53;
+}
+
+.outline:hover {
+    background: #222b42;
+    border-color: var(--primary);
+}
+
+.danger,
+.reject {
+    color: #ff9cac;
+    background: #351d2b;
+    border-color: #563043;
+}
+
+.danger:hover,
+.reject:hover {
+    background: #4b2536;
+}
+
+.approve {
+    color: #70e6b8;
+    background: #14362e;
+    border-color: #245345;
+}
+
+.approve:hover {
+    background: #1c493b;
+}
+
+.login-card form .primary {
+    width: 100%;
+    min-height: 51px;
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+/* =========================
+   6. DEMO LOGIN BOX
+========================= */
+
+.demo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-wrap: anywhere;
+
+    padding: 15px;
+    margin-top: 23px;
+
+    color: #aab4ce;
+    font-size: 11px;
+
+    background: rgba(139, 124, 255, .07);
+    border: 1px solid rgba(139, 124, 255, .18);
+    border-radius: 12px;
+}
+
+.demo b {
+    color: #b9adff;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.login-card > p:last-child {
+    margin-top: 17px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #727d97;
+    font-size: 10px;
+}
+
+.message,
+.form-message {
+    color: #b6aaff;
+    font-size: 12px;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   7. NAVBAR
+========================= */
+
+.topbar {
+    min-height: 75px;
+    padding: 15px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    background: rgba(12, 17, 30, .94);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.brand {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.top-actions span {
+    color: #aeb8d0;
+    font-size: 12px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   8. PAGE CONTAINER
+========================= */
+
+.container {
+    width: min(1180px, 90%);
+    margin: 38px auto 65px;
+}
+
+.container > h1 {
+    margin-bottom: 9px;
+}
+
+.container > .muted {
+    line-height: 1.8;
+}
+
+/* =========================
+   9. STAT CARDS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+    margin: 29px 0;
+}
+
+.stats.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stat {
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
+
+    padding: 24px;
+
+    background: linear-gradient(145deg, #171e32, #101625);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .13);
+    transition: transform .25s, border-color .25s,
+                box-shadow .25s;
+}
+
+.stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #b0a2ff, #6651ec);
+}
+
+.stat:hover {
+    transform: translateY(-4px);
+    border-color: #514687;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .22);
+}
+
+.stat span {
+    display: block;
+    color: #9da9c3;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.stat strong {
+    display: block;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.3;
+}
+
+/* =========================
+   10. PANELS
+========================= */
+
+.panel {
+    min-width: 0;
+    padding: 25px;
+    margin-bottom: 24px;
+
+    background: linear-gradient(145deg, #121a2b, #101625);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+}
+
+.panel h2 {
+    margin-bottom: 13px;
+}
+
+.panel > .muted {
+    line-height: 1.8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.grid .panel {
+    margin-bottom: 24px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    margin-bottom: 0;
+}
+
+/* =========================
+   11. EMPLOYEE FORM
+========================= */
+
+.employee-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 18px;
+    align-items: end;
+}
+
+.employee-form > div {
+    min-width: 0;
+}
+
+.employee-form label {
+    margin-top: 7px;
+}
+
+.employee-form button {
+    min-height: 45px;
+    margin-top: 17px;
+}
+
+/* =========================
+   12. TABLES
+========================= */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+
+    background: #0e1422;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 12px;
+}
+
+thead th {
+    padding: 16px;
+    color: #aab5cf;
+    background: #1a2236;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+tbody td {
+    padding: 15px 16px;
+    color: #d7deef;
+    border-bottom: 1px solid #242d42;
+    vertical-align: middle;
+}
+
+tbody tr {
+    background: #101625;
+    transition: background .2s;
+}
+
+tbody tr:hover {
+    background: #192137;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+td button {
+    white-space: nowrap;
+}
+
+/* =========================
+   13. STATUS BADGES
+========================= */
+
+.attendance-status,
+.leave-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.status-active,
+.leave-pending {
+    color: var(--yellow);
+    background: #382f1b;
+    border: 1px solid #594922;
+}
+
+.status-done,
+.leave-approved {
+    color: var(--green);
+    background: #14352d;
+    border: 1px solid #245343;
+}
+
+.leave-rejected {
+    color: var(--red);
+    background: #3c202d;
+    border: 1px solid #5b3041;
+}
+
+.leave-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+/* =========================
+   14. QUICK LINKS
+========================= */
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.quick-link {
+    min-width: 0;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 22px;
+    color: var(--text);
+    text-decoration: none;
+
+    background: linear-gradient(145deg, #171e32, #111625);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    transition: transform .25s, border-color .25s,
+                background .25s, box-shadow .25s;
+}
+
+.quick-link b {
+    color: #f1efff;
+    font-size: 14px;
+}
+
+.quick-link small {
+    color: #929db6;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.quick-link:hover {
+    transform: translateY(-4px);
+    background: #1b2138;
+    border-color: #6654a5;
+    box-shadow: 0 12px 30px rgba(98, 80, 237, .1);
+}
+
+/* =========================
+   15. BUTTON ROW
+========================= */
+
+.button-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+/* =========================
+   16. RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+    .container {
+        width: 92%;
+    }
+
+    .stats {
+        gap: 12px;
+    }
+
+    .stat {
+        padding: 20px;
+    }
+
+    .stat strong {
+        font-size: 29px;
+    }
+
+    .quick-links {
+        gap: 12px;
+    }
+
+    .quick-link {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 680px) {
+    .topbar {
+        padding: 14px 4%;
+        min-height: 68px;
+    }
+
+    .brand {
+        font-size: 21px;
+    }
+
+    .top-actions {
+        gap: 8px;
+    }
+
+    .top-actions span {
+        max-width: 120px;
+        font-size: 10px;
+    }
+
+    .container {
+        margin-top: 27px;
+        margin-bottom: 40px;
+    }
+
+    .stats,
+    .stats.two {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 22px 0;
+    }
+
+    .stat {
+        padding: 19px 22px;
+    }
+
+    .stat strong {
+        font-size: 30px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .panel {
+        padding: 19px;
+        margin-bottom: 18px;
+    }
+
+    .employee-form {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-form button {
+        width: 100%;
+    }
+
+    .quick-links {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-link {
+        min-height: 105px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .button-row button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 420px) {
+    .login-card {
+        padding: 27px 21px;
+        border-radius: 20px;
+    }
+
+    .login-card h1 {
+        font-size: 25px;
+    }
+
+    .logo {
+        width: 53px;
+        height: 53px;
+        border-radius: 15px;
+    }
+
+    .top-actions {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .top-actions span {
+        max-width: 160px;
+    }
+
+    .container {
+        width: 93%;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .leave-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
